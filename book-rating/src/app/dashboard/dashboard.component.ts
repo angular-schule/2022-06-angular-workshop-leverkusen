@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'br-dashboard',
@@ -7,5 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent {
 
-  books = ['Angular', 'AngularJS', 'AngularJS'];
+  books : Book[] = [{
+    isbn: '111',
+    title: 'Angular',
+    description: 'Test',
+    rating: 5
+  }, {
+    isbn: '222',
+    title: 'AngularJS',
+    description: 'Test',
+    rating: 3
+  }, {
+    isbn: '333',
+    title: 'jQuery',
+    description: 'Altes Buch',
+    rating: 1
+  }];
 }
+
+
