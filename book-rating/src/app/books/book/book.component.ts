@@ -12,7 +12,6 @@ export class BookComponent  {
   book?: Book;
 
   get stars() {
-    console.log('TEST');
     return new Array(this.book?.rating);
   }
 
