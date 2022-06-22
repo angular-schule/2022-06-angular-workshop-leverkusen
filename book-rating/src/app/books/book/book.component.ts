@@ -11,4 +11,9 @@ export class BookComponent  {
   @Input()
   book?: Book;
 
+  get stars() {
+    console.log('TEST');
+    return new Array(this.book?.rating);
+  }
+
 }
