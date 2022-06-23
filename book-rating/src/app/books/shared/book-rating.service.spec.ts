@@ -45,4 +45,10 @@ describe('BookRatingService', () => {
     const ratedBook2 = service.rateDown(book);
     expect(ratedBook2).not.toBe(book);
   });
+
+  // it('should work', () => {
+  //   service.rateUp(book);
+  //   service.rateDown(book);
+  //   expect(service).toBeTruthy()
+  // });
 });
