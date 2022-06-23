@@ -12,16 +12,7 @@
     </div>
     <p>{{ book.description }}</p>
 
-    <!--
-      TODO: Rector me!
-
-      1. Keine Logik im Template
-      2. Separation of Concerns einhalten
-      3. Immutability einhalten
-
-    -->
-
-    <button class="btn btn-primary me-2" (click)="book.rating = book.rating - 1">-</button>
-    <button class="btn btn-primary" (click)="book.rating = book.rating + 1">+</button>
+    <button class="btn btn-primary me-2" (click)="doRateDown()">-</button>
+    <button class="btn btn-primary" (click)="doRateUp()">+</button>
   </div>
 </div>

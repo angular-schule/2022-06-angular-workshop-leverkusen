@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 
@@ -24,6 +26,26 @@ export class DashboardComponent {
     description: 'Altes Buch',
     rating: 1
   }];
+
+  constructor(private br: BookRatingService) {
+    // setTimeout(() => this.books = [], 3000)
+  }
+
+  doRateDown(book: Book): void {
+    const ratedBook = this.br.rateDown(book);
+    this.updateAndSort(ratedBook);
+  }
+
+  doRateUp(book: Book): void {
+    const ratedBook = this.br.rateUp(book);
+    this.updateAndSort(ratedBook);
+  }
+
+  updateAndSort(ratedBook: Book) {
+    this.books = this.books
+      .map(b => (b.isbn === ratedBook.isbn) ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating)
+  }
 }
 
 
