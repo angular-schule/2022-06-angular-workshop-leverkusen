@@ -12,8 +12,8 @@
     </div>
     <p>{{ book.description }}</p>
 
-    <button class="btn btn-primary me-2" (click)="doRateDown()">-</button>
-    <button class="btn btn-primary" (click)="doRateUp()">+</button>
+    <button [disabled]="book.rating < 2" class="btn btn-primary me-2" (click)="doRateDown()">-</button>
+    <button [disabled]="book.rating > 4" class="btn btn-primary" (click)="doRateUp()">+</button>
 
     {{ log() }}
   </div>
