@@ -16,7 +16,7 @@ export class ErrorHandlingComponent {
   /**
    * Das Observable aus `this.es.randomError()` liefert mit hoher Wahrscheinlichkeit einen Fehler.
    * Probiere verschiedene Strategien aus, um den Fehler zu behandeln:
-   * - wiederholen
+   * - 1. wiederholen
    * - Fehler weiterwerfen
    * - Fehler umwandeln (in ein normales Element)
    * - Fehler verschlucken/ignorieren
@@ -26,8 +26,8 @@ export class ErrorHandlingComponent {
     this.es.randomError().pipe(
 
       /******************************/
+      retry(2) // 1.
 
-      
       /******************************/
 
     ).subscribe({
