@@ -22,11 +22,20 @@ export class CreatingComponent {
 
     /******************************/
 
-    // (ABC)|
-    of('😎', '🤑', '🐼').subscribe(
-      e => this.log(e),
-      (err: any) => this.log('FEHLER' + err),
-      () => this.log('COMPLETE! ✅'))
+    // Observer!
+    var observer = {
+      next: (e: string) => this.log(e),
+      error: (err: any) => this.log('FEHLER' + err),
+      complete: () => this.log('COMPLETE! ✅')
+    };
+
+
+    // Observable (ABC)|
+    var observable$ = of('😎', '🤑', '🐼');
+
+    // Subscription
+    var subscription = observable$.subscribe(observer);
+    subscription.unsubscribe();
 
 
     /******************************/
