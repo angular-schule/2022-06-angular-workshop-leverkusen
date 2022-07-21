@@ -23,7 +23,7 @@ export class CreatingComponent {
     /******************************/
 
     // Observer!
-    var observer = {
+    const observer = {
       next: (e: string) => this.log(e),
       error: (err: any) => this.log('FEHLER' + err),
       complete: () => this.log('COMPLETE! ✅')
@@ -31,19 +31,29 @@ export class CreatingComponent {
 
 
     // Observable (ABC)|
-    // var observable$ = of('😎', '🤑', '🐼');
+    // const observable$ = of('😎', '🤑', '🐼');
 
-    var observable$ = new Observable<string>(obs => {
-      obs.next('🤑');
+    // Subscriber
+    const observable$ = new Observable<string>(subscriber => {
+      subscriber.next('🤑');
 
-      setTimeout(() => obs.next('🐼'), 1000);
-      setTimeout(() => obs.error(' ENDE!'), 1500);
+      const x = setTimeout(() => subscriber.next('🐼'), 1000);
+      const y = setTimeout(() => subscriber.error(' ENDE!'), 1500);
+
+      const z = setTimeout(() => { subscriber.next('🐼'); this.log('Ein Panda wurde vergessen!') }, 1800);
+
+      return () => {
+        this.log('Unsubscribed: Aufräumen!')
+        clearTimeout(x);
+        clearTimeout(y);
+        clearTimeout(z);
+      };
     });
 
     // Subscription
-    var subscription = observable$.subscribe(observer);
+    const subscription = observable$.subscribe(observer);
 
-    setTimeout(() => subscription.unsubscribe(), 1200)
+    setTimeout(() => subscription.unsubscribe(), 2000)
 
 
 
