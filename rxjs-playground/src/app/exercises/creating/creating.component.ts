@@ -31,11 +31,20 @@ export class CreatingComponent {
 
 
     // Observable (ABC)|
-    var observable$ = of('😎', '🤑', '🐼');
+    // var observable$ = of('😎', '🤑', '🐼');
+
+    var observable$ = new Observable<string>(obs => {
+      obs.next('🤑');
+
+      setTimeout(() => obs.next('🐼'), 1000);
+      setTimeout(() => obs.error(' ENDE!'), 1500);
+    });
 
     // Subscription
     var subscription = observable$.subscribe(observer);
-    subscription.unsubscribe();
+
+    setTimeout(() => subscription.unsubscribe(), 1200)
+
 
 
     /******************************/
