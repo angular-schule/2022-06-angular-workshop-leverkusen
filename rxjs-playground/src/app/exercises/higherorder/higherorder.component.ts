@@ -28,7 +28,7 @@ export class HigherorderComponent {
     /**************!!**************/
 
     this.result$ = this.source$.pipe(
-      mergeMap(e => this.es.echo(e)),
+      concatMap(e => this.es.echo(e)),
     );
 
     /**************!!**************/
