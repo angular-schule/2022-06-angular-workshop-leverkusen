@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subject, ReplaySubject, timer, Subscription, takeWhile, takeUntil } from 'rxjs';
+import { Subject, ReplaySubject, timer, Subscription, takeWhile, takeUntil, take } from 'rxjs';
 
 @Component({
   selector: 'rxw-unsubscribe',
@@ -27,7 +27,8 @@ export class UnsubscribeComponent implements OnDestroy {
 
       /******************************/
 
-      takeUntil(this.destroy$)
+      // takeUntil(this.destroy$)
+      take(1)
 
       /******************************/
 
