@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subject, ReplaySubject, merge, concat, race, forkJoin, EMPTY, map } from 'rxjs';
+import { Subject, ReplaySubject, merge, concat, race, forkJoin, EMPTY, map, zip } from 'rxjs';
 
 @Component({
   selector: 'rxw-chat',
@@ -31,11 +31,12 @@ export class ChatComponent {
      * - concat (Emit values from source 1, when complete, subscribe to source 2...)
      * - race (The observable to emit first is used.)
      * - forkJoin (When all observables complete, emit the last emitted value from each.)
+     * + zip
      */
 
     /**************!!**************/
 
-    merge(
+    zip(
       this.msg.julia$,
       this.msg.georg$,
       this.msg.john$
