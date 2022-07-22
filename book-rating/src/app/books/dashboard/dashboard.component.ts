@@ -1,19 +1,22 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookStoreService } from '../shared/book-store.service';
+import { selectBooks, selectLoading } from '../store/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 
-  books : Book[] = [];
+  books$ = this.store.select(selectBooks);
+  loading$ = this.store.select(selectLoading);
 
-  constructor() {
+  constructor(private store: Store) {
   }
 
   doRateDown(book: Book): void {
