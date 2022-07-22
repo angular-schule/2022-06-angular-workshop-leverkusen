@@ -35,8 +35,12 @@ export class ChatComponent {
 
     /**************!!**************/
 
-     EMPTY.subscribe({                                   
-      next: e => this.log(e),
+    merge(
+      this.msg.julia$,
+      this.msg.georg$,
+      this.msg.john$
+    ).subscribe({
+      next: e => this.log("Ein Datensatz da: " + e),
       error: err => this.log('❌ ERROR: ' + err),
       complete: () => this.log('✅ All members left')
     });
